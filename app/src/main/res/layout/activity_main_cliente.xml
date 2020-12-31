@@ -6,4 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".cliente.MainCliente">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="128dp"
+        android:layout_height="104dp"
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="30dp" />
+
+    <Button
+        android:id="@+id/buttonAlmuerzo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Almuerzos"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="125dp" />
+
+    <Button
+        android:id="@+id/buttonPiqueos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Piqueos"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAlmuerzo"
+        tools:layout_editor_absoluteX="141dp" />
+
+    <Button
+        android:id="@+id/buttonBebidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Bebidas"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPiqueos"
+        tools:layout_editor_absoluteX="141dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
