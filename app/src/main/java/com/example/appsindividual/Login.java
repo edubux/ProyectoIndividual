@@ -1,6 +1,7 @@
 package com.example.appsindividual;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -60,6 +61,15 @@ public  void Login(View view){
 
     startActivityForResult(intent,1);
 }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==1){
+            ValiUsu();
+        }
+    }
 
 public  void ValiUsu(){
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

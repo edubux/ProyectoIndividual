@@ -34,4 +34,17 @@
         tools:layout_editor_absoluteX="4dp"
         tools:layout_editor_absoluteY="47dp" />
 
+    <Button
+        android:id="@+id/CerrarAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="CerrarAdmin"
+        android:text="Cerrar Sesión"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
