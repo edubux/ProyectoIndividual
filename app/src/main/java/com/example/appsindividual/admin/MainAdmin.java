@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.appsindividual.Login;
 import com.example.appsindividual.R;
 import com.example.appsindividual.cliente.MainCliente;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainAdmin extends AppCompatActivity {
 
@@ -18,6 +21,25 @@ public class MainAdmin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            String displayName = currentUser.getDisplayName();
+            String email = currentUser.getEmail();
+
+
+            TextView textView = findViewById(R.id.salu2Admin);
+            textView.setText("¡Bienvenido, " + displayName );
+        }
+    }
+
+    public void agregar(View view){
+
+        Intent intent = new Intent(MainAdmin.this, Agregar.class);
+
+        startActivity(intent);
+
     }
 
     public  void  CerrarAdmin(View view){

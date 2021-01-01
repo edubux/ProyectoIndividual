@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.appsindividual.admin.MainAdmin;
@@ -16,6 +17,8 @@ import com.example.appsindividual.cliente.MainCliente;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -91,12 +94,17 @@ public  void ValiUsu(){
                         //Log.d("infoapp",snapshot.getValue().toString());
                         if (snapshot.getValue() != null) {
 
-                           // Cliente clienteDTO = snapshot.getValue(Cliente.class);
+                            Cliente clienteDTO = snapshot.getValue(Cliente.class);
 
                           //  Log.d("infoapp","Nombre: "+clienteDTO.getNombre()+" , Rol: "+clienteDTO.getRol());
 
                             startActivity(new Intent(Login.this, MainCliente.class));
                             finish();
+
+                        }else {
+
+                            GuardarDatos();
+
 
                         }
 
@@ -129,4 +137,36 @@ public  void ValiUsu(){
 
 
 }
+
+    public void GuardarDatos(){
+
+        EditText editText = findViewById(R.id.editTextTextPersonName);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(currentUser!=null){
+
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            Cliente clienteDTO = new Cliente();
+            clienteDTO.setNombre(currentUser.getDisplayName());
+            clienteDTO.setEmail(currentUser.getEmail());
+
+            databaseReference.child("clientes").child(currentUser.getUid()).setValue(clienteDTO)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("con fe ","Guardado de usuario exitoso");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+            startActivity(new Intent(Login.this, MainCliente.class));
+            finish();
+
+        }
+    }
 }
