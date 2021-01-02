@@ -45,4 +45,25 @@ public class MainCliente extends AppCompatActivity {
         });
     }
 
+    public void agregar(View view){
+
+        Intent intent = new Intent(MainCliente.this, Agregar.class);
+
+        startActivity(intent);
+
+    }
+
+    public void restaurantes(View view){
+
+        Intent intent = new Intent(MainCliente.this, Restaurantes.class);
+
+        startActivity(intent);
+    }
+
+    public  void licorerias(View view){
+        Intent intent = new Intent(MainCliente.this, Licorerias.class);
+
+        startActivity(intent);
+    }
+
 }

@@ -5,6 +5,8 @@ public class Cliente {
 public  String nombre;
 public String  email;
     public  String rol ;
+
+
     public String getNombre() {
         return nombre;
     }

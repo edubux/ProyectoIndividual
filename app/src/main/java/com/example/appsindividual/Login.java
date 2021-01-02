@@ -94,7 +94,7 @@ public  void ValiUsu(){
                         //Log.d("infoapp",snapshot.getValue().toString());
                         if (snapshot.getValue() != null) {
 
-                            Cliente clienteDTO = snapshot.getValue(Cliente.class);
+                         //  Cliente clienteDTO = snapshot.getValue(Cliente.class);
 
                           //  Log.d("infoapp","Nombre: "+clienteDTO.getNombre()+" , Rol: "+clienteDTO.getRol());
 
@@ -140,7 +140,7 @@ public  void ValiUsu(){
 
     public void GuardarDatos(){
 
-        EditText editText = findViewById(R.id.editTextTextPersonName);
+
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if(currentUser!=null){

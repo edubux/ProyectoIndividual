@@ -34,13 +34,7 @@ public class MainAdmin extends AppCompatActivity {
         }
     }
 
-    public void agregar(View view){
 
-        Intent intent = new Intent(MainAdmin.this, Agregar.class);
-
-        startActivity(intent);
-
-    }
 
     public  void  CerrarAdmin(View view){
         AuthUI instance = AuthUI.getInstance();

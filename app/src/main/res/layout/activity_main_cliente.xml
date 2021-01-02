@@ -23,46 +23,40 @@
         android:id="@+id/imageView5"
         android:layout_width="128dp"
         android:layout_height="104dp"
-        app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="30dp" />
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="114dp"
+        app:layout_constraintEnd_toStartOf="@+id/cerrarCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
     <Button
-        android:id="@+id/buttonAlmuerzo"
+        android:id="@+id/buttonRestaurantes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="162dp"
-        android:text="Almuerzos"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="150dp"
+        android:onClick="restaurantes"
+        android:text="Restaurantes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonPiqueos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="172dp"
-        android:text="Piqueos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAlmuerzo" />
-
-    <Button
-        android:id="@+id/buttonBebidas"
+        android:id="@+id/buttonLicorerias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="141dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="174dp"
-        android:text="Bebidas"
+        android:onClick="licorerias"
+        android:text="Licorerías"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPiqueos" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRestaurantes" />
 
     <TextView
         android:id="@+id/salu2"
@@ -70,9 +64,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
         android:layout_marginEnd="198dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAlmuerzo"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRestaurantes"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAnunciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="176dp"
+        android:onClick="agregar"
+        android:text="Agregar Anuncio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLicorerias" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

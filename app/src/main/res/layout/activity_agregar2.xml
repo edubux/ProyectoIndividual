@@ -4,54 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.Agregar">
+    tools:context=".cliente.Agregar">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="60dp" />
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="37dp"
+        android:text="Tipo"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="138dp"
         android:layout_height="21dp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="59dp" />
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtTipo"
+        android:id="@+id/edtUbica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
         android:ems="10"
-        android:hint="Tipo"
+        android:hint="Ubicación"
         android:inputType="textPersonName"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="148dp" />
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edtNombre"
+        app:layout_constraintStart_toStartOf="@+id/edtNombre"
+        app:layout_constraintTop_toBottomOf="@+id/edtNombre"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/edtNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="120dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="235dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <EditText
-        android:id="@+id/edtPrecio"
+        android:id="@+id/edtDetalles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
         android:ems="10"
-        android:hint="Precio"
+        android:hint="Detalles"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="318dp" />
+        app:layout_constraintEnd_toEndOf="@+id/edtUbica"
+        app:layout_constraintStart_toStartOf="@+id/edtUbica"
+        app:layout_constraintTop_toBottomOf="@+id/edtUbica" />
 
     <Button
         android:id="@+id/button"
@@ -64,5 +81,5 @@
         android:text="Agregar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPrecio" />
+        app:layout_constraintTop_toBottomOf="@+id/edtDetalles" />
 </androidx.constraintlayout.widget.ConstraintLayout>
