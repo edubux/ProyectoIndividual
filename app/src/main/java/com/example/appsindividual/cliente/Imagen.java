@@ -7,6 +7,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -18,6 +21,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.appsindividual.R;
@@ -37,11 +41,14 @@ public class Imagen extends AppCompatActivity {
 
     ImageView selectImage;
     Bitmap image;
+    ProgressBar progressBarAni;
+    ObjectAnimator progressAni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imagen);
+
 
         Button btnsubir =findViewById(R.id.buttonSubir);
         selectImage=findViewById(R.id.imageView4);
@@ -69,6 +76,8 @@ public class Imagen extends AppCompatActivity {
                 upload();
             }
         });
+
+
 
     }
 
@@ -98,10 +107,21 @@ public class Imagen extends AppCompatActivity {
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
 
-                storageReference.child(name + "/" + tipo).child(fileName).putFile(uri)
+                storageReference.child(name  + tipo).child(fileName).putFile(uri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                              /*  progressBarAni=findViewById(R.id.progressBar);
+                                progressAni=ObjectAnimator.ofInt(progressBarAni,"progress",0,100);
+                                progressAni.start();
+                                progressAni.addListener(new AnimatorListenerAdapter() {
+                                    @Override
+                                    public void onAnimationEnd(Animator animation, boolean isReverse) {
+                                        super.onAnimationEnd(animation);
+                                        progressBarAni.setVisibility(View.GONE);
+                                    }
+                                });*/
+
                                 Log.d("infoapp", "Subida exitosa");
                                 Toast.makeText(Imagen.this, "Imagen Subida", Toast.LENGTH_SHORT).show();
 

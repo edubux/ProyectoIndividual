@@ -38,7 +38,7 @@ public class Restaurantes extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
                     Local locales = children.getValue(Local.class);
-                    if (locales.getEstado().equalsIgnoreCase("Aprobado")){
+                    if (locales.getEstado().equalsIgnoreCase("Aprobado")&&locales.getTipo().equalsIgnoreCase("Restaurant") ){
 
                         localList.add(new Local(locales.getNombre(),locales.getTipo(),locales.getUbicacion(),locales.getDetalle()));
 

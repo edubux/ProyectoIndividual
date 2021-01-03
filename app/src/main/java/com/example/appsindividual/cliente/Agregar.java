@@ -39,7 +39,7 @@ public class Agregar extends AppCompatActivity {
 
         Spinner spinnerComida = findViewById(R.id.spinner);
 
-        String[] lista = {"Restaurant", "Licorería", "Otro"};
+        String[] lista = {"Restaurant", "Licorería"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, lista);
         spinnerComida.setAdapter(adapter);
     }
