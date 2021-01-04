@@ -11,11 +11,24 @@ public class Local {
     public String emailCreador;
     public  String estado;
 
+
     public Local(String nombre, String tipo, String ubicacion, String detalle) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.detalle = detalle;
+    }
+
+    public Local(String nombre, String tipo, String ubicacion, String detalle, String nombreCreador,
+                 String uidCreador, String emailCreador, String estado) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.ubicacion = ubicacion;
+        this.detalle = detalle;
+        this.nombreCreador = nombreCreador;
+        this.uidCreador = uidCreador;
+        this.emailCreador = emailCreador;
+        this.estado = estado;
     }
 
     public Local() {

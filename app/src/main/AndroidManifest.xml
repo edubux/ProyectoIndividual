@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppsIndividual">
-        <activity android:name=".cliente.Licorerias"></activity>
+        <activity android:name=".admin.Gestion"></activity>
+        <activity android:name=".admin.Anuncios" />
+        <activity android:name=".cliente.Licorerias" />
         <activity android:name=".cliente.Restaurantes" />
         <activity android:name=".cliente.Agregar" />
         <activity android:name=".cliente.Imagen" />

@@ -30,15 +30,13 @@ public class Restaurantes extends AppCompatActivity {
         setContentView(R.layout.activity_restaurantes);
         setTitle("Restaurantes");
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Local").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
                     Local locales = children.getValue(Local.class);
-                    if (locales.getEstado().equalsIgnoreCase("Aprobado")&&locales.getTipo().equalsIgnoreCase("Restaurant") ){
+                    if ((locales.getEstado().equalsIgnoreCase("Aprobado"))&&(locales.getTipo().equalsIgnoreCase("Restaurant")) ){
 
                         localList.add(new Local(locales.getNombre(),locales.getTipo(),locales.getUbicacion(),locales.getDetalle()));
 

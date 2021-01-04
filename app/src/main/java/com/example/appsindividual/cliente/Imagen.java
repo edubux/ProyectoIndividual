@@ -1,3 +1,4 @@
+
 package com.example.appsindividual.cliente;
 
 import androidx.annotation.NonNull;
@@ -76,10 +77,7 @@ public class Imagen extends AppCompatActivity {
                 upload();
             }
         });
-
-
-
-    }
+   }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

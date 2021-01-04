@@ -7,25 +7,27 @@
     tools:context=".admin.MainAdmin">
 
     <Button
-        android:id="@+id/btnAgregar"
+        android:id="@+id/btnAnuncios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="203dp"
-        android:text="Agregar"
+        android:onClick="anuncios"
+        android:text="Anuncios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CerrarAdmin" />
 
     <Button
-        android:id="@+id/buttonPedidos"
+        android:id="@+id/buttonGestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Pedidos"
+        android:onClick="gestion"
+        android:text="Gestión"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAgregar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAnuncios" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -53,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAgregar"
+        app:layout_constraintBottom_toTopOf="@+id/btnAnuncios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />

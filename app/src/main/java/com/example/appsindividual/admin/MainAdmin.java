@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.appsindividual.Login;
 import com.example.appsindividual.R;
+import com.example.appsindividual.cliente.Agregar;
 import com.example.appsindividual.cliente.MainCliente;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,5 +46,20 @@ public class MainAdmin extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void anuncios( View view ){
+
+        Intent intent = new Intent(MainAdmin.this, Anuncios.class);
+
+        startActivity(intent);
+
+    }
+
+    public  void gestion(View view){
+        Intent intent = new Intent(MainAdmin.this, Gestion.class);
+
+        startActivity(intent);
+
     }
 }
