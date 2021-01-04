@@ -9,6 +9,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appsindividual.Local;
@@ -48,127 +50,136 @@ public class Gestion extends AppCompatActivity {
                                 locals.getNombreCreador(),locals.getUidCreador(),locals.getEmailCreador(),locals.getEstado()));
                     }
                 }
-                //Se le integra al Adaptador
-                AdapterAdmin2 adapterAdmin2= new AdapterAdmin2(localList, Gestion.this,activity);
-                RecyclerView recyclerView = findViewById(R.id.RecyGestion);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(Gestion.this));
-                recyclerView.setAdapter(adapterAdmin2);
+                if (localList.isEmpty()){
+                    TextView vacio= findViewById(R.id.vacioGestion);
+                    vacio.setText("No hay solicitudes");
+                    vacio.setVisibility(View.VISIBLE);
+                }else{
+                    //Se le integra al Adaptador
+                    AdapterAdmin2 adapterAdmin2= new AdapterAdmin2(localList, Gestion.this,activity);
+                    RecyclerView recyclerView = findViewById(R.id.RecyGestion);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(Gestion.this));
+                    recyclerView.setAdapter(adapterAdmin2);
 
 
-                adapterAdmin2.setOnItemClickListener(new AdapterAdmin2.OnItemClickListener() {
-                    @Override
-                    public void onRechazarClick(int position) {
-                        Local localSel = new Local();
-                        localSel.setNombre(localList.get(position).getNombre());
-                        localSel.setTipo(localList.get(position).getTipo());
-                        localSel.setUbicacion(localList.get(position).getUbicacion());
-                        localSel.setDetalle(localList.get(position).getDetalle());
-                        localSel.setNombreCreador(localList.get(position).getNombreCreador());
-                        localSel.setUidCreador(localList.get(position).getUidCreador());
-                        localSel.setEmailCreador(localList.get(position).getEmailCreador());
-                        // localSel.setEstado(localList.get(position).getEstado());
+                    adapterAdmin2.setOnItemClickListener(new AdapterAdmin2.OnItemClickListener() {
+                        @Override
+                        public void onRechazarClick(int position) {
+                            Local localSel = new Local();
+                            localSel.setNombre(localList.get(position).getNombre());
+                            localSel.setTipo(localList.get(position).getTipo());
+                            localSel.setUbicacion(localList.get(position).getUbicacion());
+                            localSel.setDetalle(localList.get(position).getDetalle());
+                            localSel.setNombreCreador(localList.get(position).getNombreCreador());
+                            localSel.setUidCreador(localList.get(position).getUidCreador());
+                            localSel.setEmailCreador(localList.get(position).getEmailCreador());
+                            // localSel.setEstado(localList.get(position).getEstado());
 
 
 
-                        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-                        databaseRef.child("Local").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                List<String> keys = new ArrayList<>();
-                                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
-                                    keys.add(keyNode.getKey());
-                                    Local localAp = keyNode.getValue(Local.class);
-                                    if(localAp.getNombre().equalsIgnoreCase(localSel.getNombre())&&
-                                            localAp.getTipo().equalsIgnoreCase(localSel.getTipo())){
-                                        localSel.setEstado("Rechazado");
-                                        DatabaseReference dbRefUpdate = FirebaseDatabase.getInstance().getReference();
-                                        dbRefUpdate.child("Local").child(keyNode.getKey()).setValue(localSel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(Gestion.this,"Solicitud Rechazada",Toast.LENGTH_LONG).show();
-                                                //notificationImportanceLow(v);
-                                                finish();
-                                                startActivity(new Intent(Gestion.this, Gestion.class));
+                            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+                            databaseRef.child("Local").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    List<String> keys = new ArrayList<>();
+                                    for(DataSnapshot keyNode : dataSnapshot.getChildren()){
+                                        keys.add(keyNode.getKey());
+                                        Local localAp = keyNode.getValue(Local.class);
+                                        if(localAp.getNombre().equalsIgnoreCase(localSel.getNombre())&&
+                                                localAp.getTipo().equalsIgnoreCase(localSel.getTipo())){
+                                            localSel.setEstado("Rechazado");
+                                            DatabaseReference dbRefUpdate = FirebaseDatabase.getInstance().getReference();
+                                            dbRefUpdate.child("Local").child(keyNode.getKey()).setValue(localSel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(Gestion.this,"Solicitud Rechazada",Toast.LENGTH_LONG).show();
+                                                    //notificationImportanceLow(v);
+                                                    finish();
+                                                    startActivity(new Intent(Gestion.this, Gestion.class));
 
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.d("infoapp","Error en el rechazo");
-                                                Toast.makeText(Gestion.this,"Error en el rechazo",Toast.LENGTH_LONG).show();
-                                                e.printStackTrace();
-                                            }
-                                        });
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.d("infoapp","Error en el rechazo");
+                                                    Toast.makeText(Gestion.this,"Error en el rechazo",Toast.LENGTH_LONG).show();
+                                                    e.printStackTrace();
+                                                }
+                                            });
+                                        }
+
                                     }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                 }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
+                            });
 
 
-                    }
+                        }
 
-                    @Override
-                    public void onAprobarClick(int position) {
-                        Local localSel = new Local();
-                        localSel.setNombre(localList.get(position).getNombre());
-                        localSel.setTipo(localList.get(position).getTipo());
-                        localSel.setUbicacion(localList.get(position).getUbicacion());
-                        localSel.setDetalle(localList.get(position).getDetalle());
-                        localSel.setNombreCreador(localList.get(position).getNombreCreador());
-                        localSel.setUidCreador(localList.get(position).getUidCreador());
-                        localSel.setEmailCreador(localList.get(position).getEmailCreador());
-                       // localSel.setEstado(localList.get(position).getEstado());
+                        @Override
+                        public void onAprobarClick(int position) {
+                            Local localSel = new Local();
+                            localSel.setNombre(localList.get(position).getNombre());
+                            localSel.setTipo(localList.get(position).getTipo());
+                            localSel.setUbicacion(localList.get(position).getUbicacion());
+                            localSel.setDetalle(localList.get(position).getDetalle());
+                            localSel.setNombreCreador(localList.get(position).getNombreCreador());
+                            localSel.setUidCreador(localList.get(position).getUidCreador());
+                            localSel.setEmailCreador(localList.get(position).getEmailCreador());
+                            // localSel.setEstado(localList.get(position).getEstado());
 
 
 
-                        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-                        databaseRef.child("Local").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                List<String> keys = new ArrayList<>();
-                                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
-                                    keys.add(keyNode.getKey());
-                                    Local localAp = keyNode.getValue(Local.class);
-                                    if(localAp.getNombre().equalsIgnoreCase(localSel.getNombre())&&
-                                            localAp.getTipo().equalsIgnoreCase(localSel.getTipo())){
-                                        localSel.setEstado("Aprobado");
-                                        DatabaseReference dbRefUpdate = FirebaseDatabase.getInstance().getReference();
-                                        dbRefUpdate.child("Local").child(keyNode.getKey()).setValue(localSel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(Gestion.this,"Solicitud Aprobada",Toast.LENGTH_LONG).show();
-                                                //notificationImportanceLow(v);
-                                                finish();
-                                                startActivity(new Intent(Gestion.this, Gestion.class));
+                            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+                            databaseRef.child("Local").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    List<String> keys = new ArrayList<>();
+                                    for(DataSnapshot keyNode : dataSnapshot.getChildren()){
+                                        keys.add(keyNode.getKey());
+                                        Local localAp = keyNode.getValue(Local.class);
+                                        if(localAp.getNombre().equalsIgnoreCase(localSel.getNombre())&&
+                                                localAp.getTipo().equalsIgnoreCase(localSel.getTipo())){
+                                            localSel.setEstado("Aprobado");
+                                            DatabaseReference dbRefUpdate = FirebaseDatabase.getInstance().getReference();
+                                            dbRefUpdate.child("Local").child(keyNode.getKey()).setValue(localSel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(Gestion.this,"Solicitud Aprobada",Toast.LENGTH_LONG).show();
+                                                    //notificationImportanceLow(v);
+                                                    finish();
+                                                    startActivity(new Intent(Gestion.this, Gestion.class));
 
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.d("infoapp","Error en la aprobación");
-                                                Toast.makeText(Gestion.this,"Error en la aprobación",Toast.LENGTH_LONG).show();
-                                                e.printStackTrace();
-                                            }
-                                        });
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.d("infoapp","Error en la aprobación");
+                                                    Toast.makeText(Gestion.this,"Error en la aprobación",Toast.LENGTH_LONG).show();
+                                                    e.printStackTrace();
+                                                }
+                                            });
+                                        }
+
                                     }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                 }
-                            }
+                            });
+                        }
+                    });
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
-                    }
-                });
+                }
+
 
             }
 

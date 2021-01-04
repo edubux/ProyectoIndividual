@@ -33,11 +33,12 @@
         android:layout_width="151dp"
         android:layout_height="62dp"
         android:layout_marginStart="131dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="130dp"
         android:text="Mikhuna"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
