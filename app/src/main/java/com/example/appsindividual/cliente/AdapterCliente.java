@@ -72,7 +72,7 @@ public class AdapterCliente extends RecyclerView.Adapter<AdapterCliente.ViewHold
 
 
         void bindData(final Local item) {
-           Glide.with(activity).load(item.getImagen()).into(cardImage);
+           Glide.with(activity).load(item.getImagen()).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(cardImage);
            // tipo.setText(item.getTipo());
             detalles.setText(item.getDetalle());
             nombre.setText(item.getNombre());
