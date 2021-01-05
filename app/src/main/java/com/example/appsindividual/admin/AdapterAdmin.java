@@ -19,12 +19,25 @@ import com.example.appsindividual.cliente.AdapterCliente;
 
 import java.util.List;
 
-public class AdapterAdmin  extends RecyclerView.Adapter<AdapterAdmin.ViewHolder>{
+public class AdapterAdmin  extends RecyclerView.Adapter<AdapterAdmin.ViewHolder> implements  View.OnClickListener{
     private List<Local> mData;
     private LayoutInflater mInflater;
     private Context context;
+    private View.OnClickListener listener;
 
     Activity activity;
+
+    @Override
+    public void onClick(View v) {
+        if(listener != null){
+            listener.onClick(v);
+        }
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
+    }
+
 
     public AdapterAdmin(List<Local> itemList, Context context, Activity activity) {
         this.mInflater = LayoutInflater.from(context);
@@ -33,6 +46,8 @@ public class AdapterAdmin  extends RecyclerView.Adapter<AdapterAdmin.ViewHolder>
         this.activity = activity;
     }
 
+
+
     @Override
     public int getItemCount() {
         return mData.size();
@@ -40,16 +55,15 @@ public class AdapterAdmin  extends RecyclerView.Adapter<AdapterAdmin.ViewHolder>
 
     @NonNull
     @Override
-    public AdapterAdmin.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
 
-        View view = mInflater.inflate(R.layout.anuncios, null);
-        AdapterAdmin.ViewHolder viewHolder = new AdapterAdmin.ViewHolder(view);
-
-
+        View view = mInflater.inflate(R.layout.anuncios, parent,false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        view.setOnClickListener(this);
         return viewHolder;
     }
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder( ViewHolder holder, int position) {
         holder.bindData(mData.get(position));
 
     }
@@ -61,7 +75,6 @@ public class AdapterAdmin  extends RecyclerView.Adapter<AdapterAdmin.ViewHolder>
             super(itemView);
 
             nombre = itemView.findViewById(R.id.nombre);
-            //cardNombre = itemView.findViewById(R.id.cardNombre);
             tipo = itemView.findViewById(R.id.Tipo);
             ubicacion = itemView.findViewById(R.id.ubicacion);
             detalles = itemView.findViewById(R.id.detalles);

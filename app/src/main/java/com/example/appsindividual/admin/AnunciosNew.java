@@ -1,10 +1,14 @@
 package com.example.appsindividual.admin;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +35,7 @@ public class AnunciosNew extends AppCompatActivity {
     Activity activity = this;
     TextView titulo;
     View v;
+    Context context;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -67,9 +72,41 @@ public class AnunciosNew extends AppCompatActivity {
                 RecyclerView recyclerView = findViewById(R.id.RecyAnuncios);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(AnunciosNew.this));
-                recyclerView.setAdapter(adapterAdmin);
+
                 titulo= findViewById(R.id.tituloAnun);
-               titulo.setText("Restaurantes");
+                titulo.setText("Restaurantes");
+                adapterAdmin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AnunciosNew.this);
+                        alertDialog.setTitle("Eliminar Anuncio");
+                        alertDialog.setMessage("Seleccionó anuncio con el" +"\nNombre: "+ localList.get(recyclerView.getChildAdapterPosition(v))
+                                .getNombre() + "\nTipo: "+ localList.get(recyclerView.getChildAdapterPosition(v)).getTipo());
+                        alertDialog.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                eliminar(localList.get(recyclerView.getChildAdapterPosition(v))
+                                        .getNombre(),localList.get(recyclerView.getChildAdapterPosition(v)).getTipo());
+                                finish();
+                                startActivity(getIntent());
+                                Toast.makeText(activity, "Se eliminó" , Toast.LENGTH_SHORT).show();
+
+                            }
+                        });alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
+                            }
+                        });
+                        alertDialog.show();
+                    }
+                });
+                recyclerView.setAdapter(adapterAdmin);
+
+
             }
 
             @Override
@@ -105,9 +142,39 @@ public class AnunciosNew extends AppCompatActivity {
                 RecyclerView recyclerView = findViewById(R.id.RecyAnuncios);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(AnunciosNew.this));
-                recyclerView.setAdapter(adapterAdmin);
                 titulo= findViewById(R.id.tituloAnun);
                titulo.setText("Licorerías");
+                adapterAdmin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AnunciosNew.this);
+                        alertDialog.setTitle("Eliminar Anuncio");
+                        alertDialog.setMessage("Seleccionó anuncio con el" +"\nNombre: "+ localList.get(recyclerView.getChildAdapterPosition(v))
+                                .getNombre() + "\nTipo: "+ localList.get(recyclerView.getChildAdapterPosition(v)).getTipo());
+                        alertDialog.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                eliminar(localList.get(recyclerView.getChildAdapterPosition(v))
+                                        .getNombre(),localList.get(recyclerView.getChildAdapterPosition(v)).getTipo());
+                                finish();
+                                startActivity(getIntent());
+                                Toast.makeText(activity, "Se eliminó" , Toast.LENGTH_SHORT).show();
+
+                            }
+                        });alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
+                            }
+                        });
+                        alertDialog.show();
+                    }
+                });
+
+                recyclerView.setAdapter(adapterAdmin);
             }
 
             @Override
@@ -142,12 +209,43 @@ public class AnunciosNew extends AppCompatActivity {
 
                 }
                 AdapterAdmin adapterAdmin= new AdapterAdmin(localList, AnunciosNew.this,activity);
-                RecyclerView recyclerView = findViewById(R.id.RecyAnuncios);
+                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.RecyAnuncios);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(AnunciosNew.this));
-                recyclerView.setAdapter(adapterAdmin);
+
                 titulo= findViewById(R.id.tituloAnun);
                 titulo.setText("Todos");
+
+                adapterAdmin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AnunciosNew.this);
+                        alertDialog.setTitle("Eliminar Anuncio");
+                        alertDialog.setMessage("Seleccionó anuncio con el" +"\nNombre: "+ localList.get(recyclerView.getChildAdapterPosition(v))
+                        .getNombre() + "\nTipo: "+ localList.get(recyclerView.getChildAdapterPosition(v)).getTipo());
+                        alertDialog.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                eliminar(localList.get(recyclerView.getChildAdapterPosition(v))
+                                        .getNombre(),localList.get(recyclerView.getChildAdapterPosition(v)).getTipo());
+                                finish();
+                                startActivity(getIntent());
+                                Toast.makeText(activity, "Se eliminó" , Toast.LENGTH_SHORT).show();
+
+                            }
+                        });alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
+                            }
+                        });
+                        alertDialog.show();
+                    }
+                });
+                recyclerView.setAdapter(adapterAdmin);
             }
 
             @Override
@@ -157,6 +255,25 @@ public class AnunciosNew extends AppCompatActivity {
         });
     }
 
+public  void eliminar(String name, String tipo){
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+databaseReference.child("Local").addListenerForSingleValueEvent(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        for (DataSnapshot children : dataSnapshot.getChildren()){
+                Local local = children.getValue(Local.class);
+        if(local.getNombre().equals(name)&&local.getTipo().equals(tipo)){
+            databaseReference.child("Local").child(children.getKey()).child("estado").setValue("Rechazado");
+        }
+     }
+    }
 
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+});
+
+}
 
 }
