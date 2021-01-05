@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.EventListener;
@@ -46,8 +48,13 @@ public class Gestion extends AppCompatActivity {
                     keys.add(keyNode.getKey());
                     Local locals = keyNode.getValue(Local.class);
                     if (locals.getEstado().equalsIgnoreCase("Pendiente") ) {
+                        String archivo = locals.getNombre() + locals.getTipo();
+                        StorageReference reference = FirebaseStorage.getInstance().getReference().child(archivo).child("imagen");
+
+                        localList.add(new Local(locals.getNombre(),locals.getTipo(),locals.getUbicacion(),locals.getDetalle(),reference));
+
                         localList.add(new Local(locals.getNombre(),locals.getTipo(),locals.getUbicacion(),locals.getDetalle(),
-                                locals.getNombreCreador(),locals.getUidCreador(),locals.getEmailCreador(),locals.getEstado()));
+                                locals.getNombreCreador(),locals.getUidCreador(),locals.getEmailCreador(),locals.getEstado(),reference));
                     }
                 }
                 if (localList.isEmpty()){

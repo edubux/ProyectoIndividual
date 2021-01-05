@@ -22,9 +22,11 @@
         android:id="@+id/imageView"
         android:layout_width="104dp"
         android:layout_height="91dp"
-        app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="264dp" />
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="184dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
     <Button
         android:id="@+id/buttonLogin"

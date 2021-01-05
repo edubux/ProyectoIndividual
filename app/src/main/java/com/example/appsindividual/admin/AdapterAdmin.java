@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import com.example.appsindividual.Local;
 import com.example.appsindividual.R;
@@ -63,13 +65,14 @@ public class AdapterAdmin  extends RecyclerView.Adapter<AdapterAdmin.ViewHolder>
             tipo = itemView.findViewById(R.id.Tipo);
             ubicacion = itemView.findViewById(R.id.ubicacion);
             detalles = itemView.findViewById(R.id.detalles);
+            cardImage=itemView.findViewById(R.id.cardImage);
 
 
         }
 
 
         void bindData(final Local item) {
-            //  Glide.with(activity).load(item.getImagenEquipo()).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(cardImage);
+            Glide.with(activity).load(item.getImagen()).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(cardImage);
              tipo.setText(item.getTipo());
             detalles.setText(item.getDetalle());
             nombre.setText(item.getNombre());

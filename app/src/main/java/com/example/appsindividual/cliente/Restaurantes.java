@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +39,9 @@ public class Restaurantes extends AppCompatActivity {
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
                     Local locales = children.getValue(Local.class);
                     if ((locales.getEstado().equalsIgnoreCase("Aprobado"))&&(locales.getTipo().equalsIgnoreCase("Restaurant")) ){
-
-                        localList.add(new Local(locales.getNombre(),locales.getTipo(),locales.getUbicacion(),locales.getDetalle()));
+                        String archivo = locales.getNombre() + locales.getTipo();
+                        StorageReference reference = FirebaseStorage.getInstance().getReference().child(archivo).child("imagen");
+                        localList.add(new Local(locales.getNombre(),locales.getTipo(),locales.getUbicacion(),locales.getDetalle(),reference));
 
                     }
                 }

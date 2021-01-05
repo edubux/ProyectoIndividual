@@ -21,6 +21,7 @@
         <activity android:name=".cliente.Agregar" />
         <activity android:name=".cliente.Imagen" />
         <activity android:name=".admin.MainAdmin" />
+        <activity android:name=".admin.AnunciosNew"/>
         <activity android:name=".cliente.MainCliente" />
         <activity android:name=".Login">
             <intent-filter>

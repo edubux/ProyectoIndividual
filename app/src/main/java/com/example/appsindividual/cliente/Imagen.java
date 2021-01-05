@@ -11,6 +11,7 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -44,14 +45,15 @@ public class Imagen extends AppCompatActivity {
     Bitmap image;
     ProgressBar progressBarAni;
     ObjectAnimator progressAni;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imagen);
+        progressDialog=new ProgressDialog(this);
 
-
-        Button btnsubir =findViewById(R.id.buttonSubir);
+      Button btnsubir =findViewById(R.id.buttonSubir);
         selectImage=findViewById(R.id.imageView4);
         Button btnTomarFoto= findViewById(R.id.buttonFoto);
         btnTomarFoto.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +95,7 @@ public class Imagen extends AppCompatActivity {
             String tipo = intent.getStringExtra("tipo");
 
             //Procesar el resultado
-            Uri uri = data.getData();//obtener el uri content
+            Uri uri = data.getData();
 
             String fileName = "imagen";
 
@@ -103,23 +105,16 @@ public class Imagen extends AppCompatActivity {
             if (permission == PackageManager.PERMISSION_GRANTED) {
                 //Subir archivo a FireStorage
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                progressDialog.setTitle("Subiendo imagen ...");
+                progressDialog.setMessage("Subiendo imagen a Storage");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
 
 
                 storageReference.child(name  + tipo).child(fileName).putFile(uri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                              /*  progressBarAni=findViewById(R.id.progressBar);
-                                progressAni=ObjectAnimator.ofInt(progressBarAni,"progress",0,100);
-                                progressAni.start();
-                                progressAni.addListener(new AnimatorListenerAdapter() {
-                                    @Override
-                                    public void onAnimationEnd(Animator animation, boolean isReverse) {
-                                        super.onAnimationEnd(animation);
-                                        progressBarAni.setVisibility(View.GONE);
-                                    }
-                                });*/
-
                                 Log.d("infoapp", "Subida exitosa");
                                 Toast.makeText(Imagen.this, "Imagen Subida", Toast.LENGTH_SHORT).show();
 
@@ -213,11 +208,15 @@ public class Imagen extends AppCompatActivity {
         String name = intent.getStringExtra("name");
         String tipo = intent.getStringExtra("tipo");
         String fileName = "imagen";
+        progressDialog.setTitle("Subiendo imagen ...");
+        progressDialog.setMessage("Subiendo imagen a Storage");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
 
         final String random = UUID.randomUUID().toString();
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = storageReference.child(name + "/"+tipo).child(fileName);
+        StorageReference imageRef = storageReference.child(name +tipo).child(fileName);
 
         byte[] b = stream.toByteArray();
         imageRef.putBytes(b).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -233,7 +232,7 @@ public class Imagen extends AppCompatActivity {
 
                 Intent intent = new Intent(Imagen.this, MainCliente.class);
                 startActivity(intent);
-                Toast.makeText(Imagen.this, "Se subió la  captura  exitosamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Imagen.this, "Se subió la  captura  exitósamente", Toast.LENGTH_SHORT).show();
 
             }
         }).addOnFailureListener(new OnFailureListener() {

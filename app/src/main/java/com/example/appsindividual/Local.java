@@ -1,5 +1,8 @@
 package com.example.appsindividual;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.StorageReference;
+
 public class Local {
 
     public String nombre;
@@ -10,17 +13,19 @@ public class Local {
     public String uidCreador;
     public String emailCreador;
     public  String estado;
+    public StorageReference imagen;
 
 
-    public Local(String nombre, String tipo, String ubicacion, String detalle) {
+    public Local(String nombre, String tipo, String ubicacion, String detalle,StorageReference imagen) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.detalle = detalle;
+        this.imagen=imagen;
     }
 
     public Local(String nombre, String tipo, String ubicacion, String detalle, String nombreCreador,
-                 String uidCreador, String emailCreador, String estado) {
+                 String uidCreador, String emailCreador, String estado, StorageReference imagen) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
@@ -29,9 +34,18 @@ public class Local {
         this.uidCreador = uidCreador;
         this.emailCreador = emailCreador;
         this.estado = estado;
+        this.imagen=imagen;
     }
 
     public Local() {
+    }
+
+    public StorageReference getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(StorageReference imagen) {
+        this.imagen = imagen;
     }
 
     public String getEstado() {

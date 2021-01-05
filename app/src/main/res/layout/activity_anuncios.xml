@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".admin.Anuncios">
+    tools:context=".admin.AnunciosNew">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,10 +18,10 @@
             android:id="@+id/filRest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="30dp"
             android:onClick="filterRest"
             android:paddingRight="10dp"
-            android:text="Restaurantes:"
+            android:text="Restaurantes"
             android:textColor="#F0F1F6"
             android:textSize="9dp" />
 
@@ -32,7 +32,7 @@
             android:layout_marginLeft="10dp"
             android:onClick="todas"
             android:paddingRight="10dp"
-            android:text="Todos:"
+            android:text="Todos"
             android:textColor="#F0F1F6"
             android:textSize="9dp" />
 
@@ -43,7 +43,7 @@
             android:layout_marginLeft="10dp"
             android:onClick="filLico"
             android:paddingRight="10dp"
-            android:text="Licorerias:"
+            android:text="Licorerias"
             android:textColor="#F0F1F6"
             android:textSize="9dp" />
 

@@ -50,7 +50,7 @@ public class MainAdmin extends AppCompatActivity {
 
     public void anuncios( View view ){
 
-        Intent intent = new Intent(MainAdmin.this, Anuncios.class);
+        Intent intent = new Intent(MainAdmin.this, AnunciosNew.class);
 
         startActivity(intent);
 
