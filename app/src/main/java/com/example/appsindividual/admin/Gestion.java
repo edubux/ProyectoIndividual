@@ -51,9 +51,7 @@ public class Gestion extends AppCompatActivity {
                         String archivo = locals.getNombre() + locals.getTipo();
                         StorageReference reference = FirebaseStorage.getInstance().getReference().child(archivo).child("imagen");
 
-                        localList.add(new Local(locals.getNombre(),locals.getTipo(),locals.getUbicacion(),locals.getDetalle(),reference));
-
-                        localList.add(new Local(locals.getNombre(),locals.getTipo(),locals.getUbicacion(),locals.getDetalle(),
+                      localList.add(new Local(locals.getNombre(),locals.getTipo(),locals.getUbicacion(),locals.getDetalle(),
                                 locals.getNombreCreador(),locals.getUidCreador(),locals.getEmailCreador(),locals.getEstado(),reference));
                     }
                 }

@@ -106,7 +106,7 @@ public class Imagen extends AppCompatActivity {
                 //Subir archivo a FireStorage
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
                 progressDialog.setTitle("Subiendo imagen ...");
-                progressDialog.setMessage("Subiendo imagen a Storage");
+                progressDialog.setMessage("Espere unos segundos");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
 
@@ -209,7 +209,7 @@ public class Imagen extends AppCompatActivity {
         String tipo = intent.getStringExtra("tipo");
         String fileName = "imagen";
         progressDialog.setTitle("Subiendo imagen ...");
-        progressDialog.setMessage("Subiendo imagen a Storage");
+        progressDialog.setMessage("Espere unos segundos");
         progressDialog.setCancelable(false);
         progressDialog.show();
 

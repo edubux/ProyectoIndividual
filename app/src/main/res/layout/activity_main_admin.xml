@@ -10,11 +10,10 @@
         android:id="@+id/btnAnuncios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="203dp"
+        android:layout_marginTop="120dp"
         android:onClick="anuncios"
         android:text="Anuncios"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CerrarAdmin" />
 
@@ -22,10 +21,11 @@
         android:id="@+id/buttonGestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:onClick="gestion"
         android:text="Gestión"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAnuncios" />
 
@@ -34,19 +34,20 @@
         android:layout_width="128dp"
         android:layout_height="104dp"
         app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="47dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="61dp" />
 
     <Button
         android:id="@+id/CerrarAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="25dp"
         android:onClick="CerrarAdmin"
         android:text="Cerrar Sesión"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +55,7 @@
         android:id="@+id/salu2Admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAnuncios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

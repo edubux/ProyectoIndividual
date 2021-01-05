@@ -29,7 +29,7 @@ public class AnunciosNew extends AppCompatActivity {
 
     List<Local> localList = new ArrayList<>();
     Activity activity = this;
-    //TextView titulo= findViewById(R.id.titulo);
+    TextView titulo;
     View v;
 
     @Override
@@ -39,39 +39,6 @@ public class AnunciosNew extends AppCompatActivity {
         setTitle("Anuncios");
 
         todas(v);
-        //   spinnerTipo.setAdapter(adapter);
-
-      /*  DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("Local").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                localList.clear();
-                List<String> keys = new ArrayList<>();
-
-
-                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
-                    keys.add(keyNode.getKey());
-                    Local locals = keyNode.getValue(Local.class);
-
-                 if (locals.getEstado().equalsIgnoreCase("Aprobado") ) {
-                        localList.add(new Local(locals.getNombre(),locals.getTipo(),locals.getUbicacion(),locals.getDetalle()));
-                    }
-
-                }
-                AdapterAdmin adapterAdmin= new AdapterAdmin(localList, AnunciosNew.this,activity);
-                RecyclerView recyclerView = findViewById(R.id.RecyAnuncios);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(AnunciosNew.this));
-                recyclerView.setAdapter(adapterAdmin);
-
-                titulo.setText("Todos");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
     }
 
@@ -101,7 +68,8 @@ public class AnunciosNew extends AppCompatActivity {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(AnunciosNew.this));
                 recyclerView.setAdapter(adapterAdmin);
-              //  titulo.setText("Restaurantes");
+                titulo= findViewById(R.id.tituloAnun);
+               titulo.setText("Restaurantes");
             }
 
             @Override
@@ -138,7 +106,8 @@ public class AnunciosNew extends AppCompatActivity {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(AnunciosNew.this));
                 recyclerView.setAdapter(adapterAdmin);
-               // titulo.setText("Licorerías");
+                titulo= findViewById(R.id.tituloAnun);
+               titulo.setText("Licorerías");
             }
 
             @Override
@@ -177,7 +146,8 @@ public class AnunciosNew extends AppCompatActivity {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(AnunciosNew.this));
                 recyclerView.setAdapter(adapterAdmin);
-               // titulo.setText("Todos");
+                titulo= findViewById(R.id.tituloAnun);
+                titulo.setText("Todos");
             }
 
             @Override

@@ -70,21 +70,21 @@ public class Agregar extends AppCompatActivity {
             local.setEmailCreador(email);
             local.setEstado("Pendiente");
 
-            if(ubicacion.getText().toString().equalsIgnoreCase("")){
+            if(ubicacion.getText().toString().equalsIgnoreCase("")&&nombre.getText().toString().equalsIgnoreCase("")&&
+                    detalles.getText().toString().equalsIgnoreCase("")){
                 ubicacion.setError("Debe ingresar la ubicación");
-                Toast.makeText(this, "DEBE ESPECIFICAR UBICACIÓN", Toast.LENGTH_SHORT).show();
+                nombre.setError("Debe ingresar nombre del Local");
+                detalles.setError("Debe ingresar detalles del Local");
+                Toast.makeText(this, "DEBE RELLENAR  LAS CASILLAS", Toast.LENGTH_SHORT).show();
             }else if (nombre.getText().toString().equalsIgnoreCase("")){
                 nombre.setError("Debe ingresar nombre del Local");
                 Toast.makeText(this, "DEBE ESPECIFICAR NOMBRE", Toast.LENGTH_SHORT).show();
             }else if(detalles.getText().toString().equalsIgnoreCase("")){
                 detalles.setError("Debe ingresar detalles del Local");
                 Toast.makeText(this, "DEBE ESPECIFICAR DETALLES", Toast.LENGTH_SHORT).show();
-            }else if(ubicacion.getText().toString().equalsIgnoreCase("")&&nombre.getText().toString().equalsIgnoreCase("")&&
-                    detalles.getText().toString().equalsIgnoreCase("") ) {
-                ubicacion.setError("Debe ingresar la ubicación");
-                nombre.setError("Debe ingresar nombre del Local");
-                detalles.setError("Debe ingresar detalles del Local");
-                Toast.makeText(this, "DEBE RELLENAR  LAS CASILLAS", Toast.LENGTH_SHORT).show();
+            }else if(ubicacion.getText().toString().equalsIgnoreCase("") ) {
+                   ubicacion.setError("Debe ingresar la ubicación");
+                Toast.makeText(this, "DEBE ESPECIFICAR UBICACIÓN", Toast.LENGTH_SHORT).show();
 
             }else{
                 DatabaseReference dbRefStock = FirebaseDatabase.getInstance().getReference();

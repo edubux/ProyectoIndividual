@@ -36,13 +36,10 @@
         android:id="@+id/buttonRestaurantes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="216dp"
-        android:layout_marginEnd="150dp"
+        android:layout_marginTop="220dp"
         android:onClick="restaurantes"
         android:text="Restaurantes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,13 +47,10 @@
         android:id="@+id/buttonLicorerias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="174dp"
+        android:layout_marginTop="28dp"
         android:onClick="licorerias"
         android:text="Licorerías"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonRestaurantes" />
 
@@ -73,13 +67,10 @@
         android:id="@+id/buttonAnunciar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="176dp"
         android:onClick="agregar"
         android:text="Agregar Anuncio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.305"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLicorerias" />
 
