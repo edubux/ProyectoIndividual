@@ -263,7 +263,7 @@ databaseReference.child("Local").addListenerForSingleValueEvent(new ValueEventLi
         for (DataSnapshot children : dataSnapshot.getChildren()){
                 Local local = children.getValue(Local.class);
         if(local.getNombre().equals(name)&&local.getTipo().equals(tipo)){
-            databaseReference.child("Local").child(children.getKey()).child("estado").setValue("Rechazado");
+            databaseReference.child("Local").child(children.getKey()).child("estado").setValue("Eliminado");
         }
      }
     }
